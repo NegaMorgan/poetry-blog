@@ -5,3 +5,25 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'nokogiri'
+require 'open-uri'
+
+#poems = PoemScraper.new(25)
+
+class PoemScraper
+  def initialize(number_of_poems)
+    @poems = PoemFinder.list(25)
+    @poems.each do |poem|
+      
+    end
+  end
+end 
+
+class PoemFinder
+  BASE_URL = "http://www.poemhunter.com"
+  # TODO make number of poems dynamic, search multiple pages
+  def self.list(number_of_poems)
+    page = Nokogiri::HTML(open(BASE_URL+"/p/m/l.asp?p=1&l=Top500&order=title"))
+    page.css(".poems-listing .title a").collect { |link| BASE_URL+link.attribute("href").value }
+  end
+end
