@@ -19,7 +19,12 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe PoemsController do
-
+  # TODO this feels shitty, fix later
+  before(:all) do
+    system 'rake db:drop'
+    system 'rake db:migrate'
+    system 'rake db:migrate RAILS_ENV=test'
+  end
   # This should return the minimal set of attributes required to create a valid
   # Poem. As you add validations to Poem, be sure to
   # adjust the attributes here as well.
