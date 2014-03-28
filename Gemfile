@@ -33,6 +33,8 @@ group :doc do
 end
 
 group :development, :test do
+  gem 'pry'
+  gem 'nokogiri'
   gem 'rspec', '~> 2.14'
   gem 'rspec-rails', '~> 2.14'
 end
