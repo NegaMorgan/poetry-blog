@@ -5,4 +5,7 @@ class Poem < ActiveRecord::Base
     self.author.name
   end
 
+  validates :title, presence: true
+  validates :content, presence: true
+
 end
